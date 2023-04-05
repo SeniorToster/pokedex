@@ -1,22 +1,12 @@
-import { useEffect } from 'react';
-import './App.css';
-import { fetchPokemons, pokemonsState } from './store/pokemonsSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import PokedexPage from './pages/Pokedex';
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 function App() {
-  const pokemons = useSelector(pokemonsState);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchPokemons());
-  }, []);
-
   return (
-    <div className='App'>
-      {pokemons.map(pokemon => (
-        <img src={pokemon.img} />
-      ))}
-    </div>
+    <Provider store={store}>
+      <PokedexPage />
+    </Provider>
   );
 }
 

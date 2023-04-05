@@ -1,0 +1,7 @@
+@import '_normalize';
+@import '_global'; /* Сброс */
+@import '_variables'; /* Переменные */
+
+body {
+  background-color: $color-background;
+}

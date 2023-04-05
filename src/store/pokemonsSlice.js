@@ -31,6 +31,7 @@ export const fetchPokemons = createAsyncThunk(
 
 const initialState = {
   pokemons: [],
+  pokemon: ['test'],
   loadingPokemons: 'idle',
 };
 
@@ -62,5 +63,7 @@ const { reducer, actions } = pokemonsSlice;
 export default reducer;
 
 export const pokemonsState = state => state.pokemons.pokemons;
+export const loadingPokemonsState = state => state.pokemons.loadingPokemons;
+export const pokemonState = state => state.pokemons.pokemon;
 
 export const { test } = actions;
