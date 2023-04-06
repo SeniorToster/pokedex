@@ -1,7 +1,5 @@
 .container {
   display: flex;
+  gap: 30px;
   position: relative;
-  &_wrapper {
-    margin-right: 460px;
-  }
 }

@@ -1,4 +1,4 @@
-import pikachu from '../../../assets/pikachu.png';
+import pikachu from '../../../../assets/pikachu.png';
 import styles from './IdlePokemon.module.scss';
 
 function IdlePokemon() {

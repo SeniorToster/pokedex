@@ -2,6 +2,7 @@ import { useDispatch } from 'react-redux';
 import TypesPokemon from '../../../Ui/typesPokemon/TypesPokemon';
 import styles from './PokemonItem.module.scss';
 import { fetchPokemonDetails } from '../../../../store/pokemonsSlice';
+import Title from '../../../Ui/Title/Title';
 
 function PokemonItem({ pokemon }) {
   const { img, name, id, types } = pokemon;
@@ -16,9 +17,7 @@ function PokemonItem({ pokemon }) {
     >
       <img src={img} />
       <p className={styles.wrapper_id}>Nº{id}</p>
-      <h3 className={styles.wrapper_name}>
-        {name[0].toUpperCase() + name.slice(1)}
-      </h3>
+      <Title text={name} size={'22px'} />
       <TypesPokemon types={types} />
     </div>
   );

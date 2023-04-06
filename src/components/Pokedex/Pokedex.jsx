@@ -7,7 +7,7 @@ import styles from './Pokedex.module.scss';
 function Pokedex() {
   return (
     <div className={styles.container}>
-      <div className={styles.container_wrapper}>
+      <div>
         <Search />
         <PokemonList />
       </div>

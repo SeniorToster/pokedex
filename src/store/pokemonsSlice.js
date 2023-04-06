@@ -54,7 +54,6 @@ export const fetchPokemonDetails = createAsyncThunk(
       height,
       abilities,
       stats,
-      flavor_text_entries,
       text: flavor_text_entries[0].flavor_text,
       img: {
         gif: sprites.versions['generation-v'][`black-white`].animated
@@ -79,9 +78,7 @@ export const fetchPokemonDetails = createAsyncThunk(
     }
 
     if (chain.evolves_to.length) {
-      console.log(chain.evolves_to[0].species.name === name);
       if (chain.evolves_to[0].species.name === name) {
-        console.log(5);
         pokemon.evolution.push({
           name,
           id,
@@ -89,7 +86,6 @@ export const fetchPokemonDetails = createAsyncThunk(
           level: chain.evolves_to[0].evolution_details[0].min_level,
         });
       } else {
-        console.log(6);
         const dataPokemon = await getPokemon(
           validationUrl(chain.evolves_to[0].species.url)
         ).json();
@@ -100,6 +96,7 @@ export const fetchPokemonDetails = createAsyncThunk(
           level: chain.evolves_to[0].evolution_details[0].min_level,
         });
       }
+
       if (chain.evolves_to[0].evolves_to.length) {
         if (chain.evolves_to[0].evolves_to[0].species.name === name) {
           pokemon.evolution.push({ name, id, img: pokemon.img.png });

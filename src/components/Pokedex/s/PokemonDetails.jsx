@@ -5,11 +5,9 @@ import {
   loadingPokemonDetailsState,
   pokemonDetailsState,
 } from '../../../store/pokemonsSlice';
-import IdlePokemon from './IdlePokemon/IdlePokemon';
-import LoadingPokemon from './LoadingPokemon/LoadingPokemon';
+import IdlePokemon from '../IdlePokemon/IdlePokemon';
+import LoadingPokemon from '../../Ui/LoadingPokemon/LoadingPokemon';
 import TypesPokemon from '../../Ui/typesPokemon/TypesPokemon';
-import Title from '../../Ui/Title/Title';
-import AbilitiesPokemon from './AbilitiesPokemon/AbilitiesPokemon';
 
 function PokemonDetails() {
   const loadingPokemon = useSelector(loadingPokemonDetailsState);
@@ -51,24 +49,16 @@ function PokemonDetailsSucceeded({ pokemon }) {
   } = pokemon;
 
   return (
-    <div className={styles.pokemon}>
+    <div>
       <img src={img.png} alt='pokemon' />
-      <span className={styles.pokemon_id}>#{id}</span>
-      <Title text={name} size={'30px'} />
+      <p>#{id}</p>
+      <h1>{name}</h1>
       <TypesPokemon types={types} />
-      <p className={styles.pokemon_title_text}>POKÉDEX ENTRY</p>
-      <p className={styles.pokemon_text}>{text}</p>
-      <p className={styles.pokemon_title_text}>ABILITIES</p>
-      <AbilitiesPokemon abilities={abilities} />
-      <div className={styles.pokemon_wrapperSize}>
-        <div className={styles.pokemon_wrapperSize_item}>
-          <p className={styles.pokemon_title_text}>height</p>
-          <p className={styles.pokemon_wrapperSize_data}>{height}m</p>
-        </div>
-        <div className={styles.pokemon_wrapperSize_item}>
-          <p className={styles.pokemon_title_text}>weight</p>
-          <p className={styles.pokemon_wrapperSize_data}>{weight}Kg</p>
-        </div>
+      <p>{text}</p>
+      <div>{abilities.map(item => {})}</div>
+      <div>
+        <p>{height}</p>
+        <p>{weight}</p>
       </div>
     </div>
   );
