@@ -1,0 +1,14 @@
+.wrapper {
+  &_typeList {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 26px;
+  }
+  &_typeItem {
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-weight: 900;
+    font-size: 13px;
+    color: rgba($color: #000000, $alpha: 0.7);
+  }
+}

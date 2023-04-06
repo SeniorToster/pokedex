@@ -1,31 +1,25 @@
-import { colorTypes } from '../../../../helpers/colorTypes';
+import { useDispatch } from 'react-redux';
+import TypesPokemon from '../../../Ui/typesPokemon/TypesPokemon';
 import styles from './PokemonItem.module.scss';
+import { fetchPokemonDetails } from '../../../../store/pokemonsSlice';
 
 function PokemonItem({ pokemon }) {
   const { img, name, id, types } = pokemon;
+  const dispatch = useDispatch();
+
   return (
-    <div className={styles.wrapper}>
+    <div
+      className={styles.wrapper}
+      onClick={() => {
+        dispatch(fetchPokemonDetails(id));
+      }}
+    >
       <img src={img} />
       <p className={styles.wrapper_id}>Nº{id}</p>
       <h3 className={styles.wrapper_name}>
         {name[0].toUpperCase() + name.slice(1)}
       </h3>
-      <li className={styles.wrapper_typeList}>
-        {types.map(({ type }) => {
-          const { color } = colorTypes.find(item => item.name === type.name);
-          return (
-            <ul
-              style={{
-                backgroundColor: color,
-              }}
-              key={type.name}
-              className={styles.wrapper_typeItem}
-            >
-              {type.name.toUpperCase()}
-            </ul>
-          );
-        })}
-      </li>
+      <TypesPokemon types={types} />
     </div>
   );
 }

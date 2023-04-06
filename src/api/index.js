@@ -1,12 +1,20 @@
 import ky from 'ky';
 
-const api = 'https://pokeapi.co/api/v2';
+const url = 'https://pokeapi.co/api/v2';
 const limit = '20';
 
 export const getPokemons = ky.create({
-  prefixUrl: `${api}/pokemon?limit=${limit}`,
+  prefixUrl: `${url}/pokemon?limit=${limit}`,
 });
 
 export const getPokemon = ky.create({
-  prefixUrl: `${api}/pokemon`,
+  prefixUrl: `${url}/pokemon`,
+});
+
+export const getPokemonSpecies = ky.create({
+  prefixUrl: `${url}/pokemon-species`,
+});
+
+export const getPokemonEvolution = ky.create({
+  prefixUrl: `${url}/evolution-chain`,
 });
