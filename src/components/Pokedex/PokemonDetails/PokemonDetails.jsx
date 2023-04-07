@@ -10,6 +10,8 @@ import LoadingPokemon from './LoadingPokemon/LoadingPokemon';
 import TypesPokemon from '../../Ui/typesPokemon/TypesPokemon';
 import Title from '../../Ui/Title/Title';
 import AbilitiesPokemon from './AbilitiesPokemon/AbilitiesPokemon';
+import StatsPokemon from './StatsPokemon/StatsPokemon';
+import PaginationPokemons from './PaginationPokemons/PaginationPokemons';
 
 function PokemonDetails() {
   const loadingPokemon = useSelector(loadingPokemonDetailsState);
@@ -37,18 +39,8 @@ function PokemonDetails() {
 }
 
 function PokemonDetailsSucceeded({ pokemon }) {
-  const {
-    img,
-    id,
-    name,
-    types,
-    text,
-    abilities,
-    weight,
-    height,
-    stats,
-    evolution,
-  } = pokemon;
+  const { img, id, name, types, text, abilities, sizes, stats, evolution } =
+    pokemon;
 
   return (
     <div className={styles.pokemon}>
@@ -61,15 +53,35 @@ function PokemonDetailsSucceeded({ pokemon }) {
       <p className={styles.pokemon_title_text}>ABILITIES</p>
       <AbilitiesPokemon abilities={abilities} />
       <div className={styles.pokemon_wrapperSize}>
-        <div className={styles.pokemon_wrapperSize_item}>
-          <p className={styles.pokemon_title_text}>height</p>
-          <p className={styles.pokemon_wrapperSize_data}>{height}m</p>
-        </div>
-        <div className={styles.pokemon_wrapperSize_item}>
-          <p className={styles.pokemon_title_text}>weight</p>
-          <p className={styles.pokemon_wrapperSize_data}>{weight}Kg</p>
-        </div>
+        {sizes.map(({ name, data }) => (
+          <div key={name} className={styles.pokemon_wrapperSize_item}>
+            <p className={styles.pokemon_title_text}>{name}</p>
+            <p className={styles.pokemon_wrapperSize_data}>{data}</p>
+          </div>
+        ))}
       </div>
+      <p className={styles.pokemon_title_text}>stats</p>
+      <StatsPokemon stats={stats} />
+      <p className={styles.pokemon_title_text}>evolution</p>
+      <div className={styles.evolution}>
+        {evolution.length > 1 ? (
+          evolution.map(({ id, name, img, level = undefined }) => (
+            <>
+              {level && <p>Lvl {level}</p>}
+              <div
+                onClick={() => {
+                  console.log(id);
+                }}
+              >
+                <img src={img} alt={name} />
+              </div>
+            </>
+          ))
+        ) : (
+          <p>нету</p>
+        )}
+      </div>
+      <PaginationPokemons id={id} />
     </div>
   );
 }
