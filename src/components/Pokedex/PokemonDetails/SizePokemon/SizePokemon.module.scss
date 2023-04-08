@@ -1,0 +1,17 @@
+.size {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 20px;
+  &_item {
+    flex: 1;
+  }
+  &_data {
+    background-color: $color-background;
+    padding: 14px 24px;
+    border-radius: 40px;
+    font-weight: 800;
+    font-size: 15px;
+  }
+}

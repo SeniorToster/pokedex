@@ -13,6 +13,7 @@ import PaginationPokemons from './PaginationPokemons/PaginationPokemons';
 import EvolutionPokemon from './EvolutionPokemon/EvolutionPokemon';
 
 import styles from './PokemonDetails.module.scss';
+import Title from '../../Ui/Title/Title';
 
 function PokemonDetails() {
   const loadingPokemon = useSelector(loadingPokemonDetailsState);
@@ -44,23 +45,12 @@ function PokemonDetailsSucceeded({ pokemon }) {
     <div className={styles.pokemon}>
       <img src={img.png} alt='pokemon' />
       <span className={styles.pokemon_id}>#{id}</span>
-      <Name text={name} size={'30px'} />
+      <Name size={'30px'}>{name}</Name>
       <TypesPokemon types={types} />
-      <p className={styles.pokemon_title_text}>POKÉDEX ENTRY</p>
+      <Title>POKÉDEX ENTRY</Title>
       <p className={styles.pokemon_text}>{text}</p>
-      <p className={styles.pokemon_title_text}>ABILITIES</p>
       <AbilitiesPokemon abilities={abilities} />
-      <div className={styles.pokemon_wrapperSize}>
-        {sizes.map(({ name, data }) => (
-          <div key={name} className={styles.pokemon_wrapperSize_item}>
-            <p className={styles.pokemon_title_text}>{name}</p>
-            <p className={styles.pokemon_wrapperSize_data}>{data}</p>
-          </div>
-        ))}
-      </div>
-      <p className={styles.pokemon_title_text}>stats</p>
       <StatsPokemon stats={stats} />
-      <p className={styles.pokemon_title_text}>evolution</p>
       <EvolutionPokemon evolution={evolution} />
       <PaginationPokemons id={id} />
     </div>

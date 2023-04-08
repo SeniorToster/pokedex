@@ -17,7 +17,7 @@ function PokemonItem({ pokemon }) {
     >
       <img src={img} />
       <p className={styles.wrapper_id}>Nº{id}</p>
-      <Name text={name} size={'22px'} />
+      <Name size={'22px'}>{name}</Name>
       <TypesPokemon types={types} />
     </div>
   );
