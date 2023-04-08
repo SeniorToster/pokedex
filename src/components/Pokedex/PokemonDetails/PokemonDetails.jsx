@@ -1,5 +1,3 @@
-import styles from './PokemonDetails.module.scss';
-
 import { useSelector } from 'react-redux';
 import {
   loadingPokemonDetailsState,
@@ -8,17 +6,17 @@ import {
 import IdlePokemon from './IdlePokemon/IdlePokemon';
 import LoadingPokemon from './LoadingPokemon/LoadingPokemon';
 import TypesPokemon from '../../Ui/typesPokemon/TypesPokemon';
-import Title from '../../Ui/Title/Title';
+import Name from '../../Ui/Name/Name';
 import AbilitiesPokemon from './AbilitiesPokemon/AbilitiesPokemon';
 import StatsPokemon from './StatsPokemon/StatsPokemon';
 import PaginationPokemons from './PaginationPokemons/PaginationPokemons';
+import EvolutionPokemon from './EvolutionPokemon/EvolutionPokemon';
+
+import styles from './PokemonDetails.module.scss';
 
 function PokemonDetails() {
   const loadingPokemon = useSelector(loadingPokemonDetailsState);
   const pokemon = useSelector(pokemonDetailsState);
-
-  console.log(loadingPokemon);
-  console.log(pokemon);
 
   const renderElements = (loadingPokemon, pokemon) => {
     switch (loadingPokemon) {
@@ -46,7 +44,7 @@ function PokemonDetailsSucceeded({ pokemon }) {
     <div className={styles.pokemon}>
       <img src={img.png} alt='pokemon' />
       <span className={styles.pokemon_id}>#{id}</span>
-      <Title text={name} size={'30px'} />
+      <Name text={name} size={'30px'} />
       <TypesPokemon types={types} />
       <p className={styles.pokemon_title_text}>POKÉDEX ENTRY</p>
       <p className={styles.pokemon_text}>{text}</p>
@@ -63,24 +61,7 @@ function PokemonDetailsSucceeded({ pokemon }) {
       <p className={styles.pokemon_title_text}>stats</p>
       <StatsPokemon stats={stats} />
       <p className={styles.pokemon_title_text}>evolution</p>
-      <div className={styles.evolution}>
-        {evolution.length > 1 ? (
-          evolution.map(({ id, name, img, level = undefined }) => (
-            <>
-              {level && <p>Lvl {level}</p>}
-              <div
-                onClick={() => {
-                  console.log(id);
-                }}
-              >
-                <img src={img} alt={name} />
-              </div>
-            </>
-          ))
-        ) : (
-          <p>нету</p>
-        )}
-      </div>
+      <EvolutionPokemon evolution={evolution} />
       <PaginationPokemons id={id} />
     </div>
   );
