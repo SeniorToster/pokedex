@@ -4,12 +4,15 @@ import styles from './PokemonItem.module.scss';
 import { fetchPokemonDetails } from '../../../../store/pokemonsSlice';
 import Name from '../../../Ui/Name/Name';
 
-function PokemonItem({ pokemon }) {
+function PokemonItem({ pokemon, focusPokemon }) {
   const { img, name, id, types } = pokemon;
   const dispatch = useDispatch();
 
   return (
     <div
+      style={{
+        border: `4px solid ${focusPokemon === id ? `#b6c8d8` : `#ffff`}`,
+      }}
       className={styles.wrapper}
       onClick={() => {
         dispatch(fetchPokemonDetails(id));

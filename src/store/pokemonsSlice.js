@@ -130,6 +130,7 @@ export const fetchPokemonDetails = createAsyncThunk(
 const initialState = {
   pokemons: [],
   pokemonDetails: {},
+  focusPokemon: '',
   loadingPokemonDetails: 'idle',
   loadingPokemons: 'idle',
 };
@@ -163,6 +164,7 @@ const pokemonsSlice = createSlice({
       .addCase(fetchPokemonDetails.fulfilled, (state, { payload }) => {
         state.loadingPokemonDetails = 'succeeded';
         state.pokemonDetails = payload;
+        state.focusPokemon = payload.id;
       });
   },
 });
@@ -174,6 +176,7 @@ export default reducer;
 export const pokemonsState = state => state.pokemons.pokemons;
 
 export const loadingPokemonsState = state => state.pokemons.loadingPokemons;
+export const focusPokemonState = state => state.pokemons.focusPokemon;
 
 export const loadingPokemonDetailsState = state =>
   state.pokemons.loadingPokemonDetails;
