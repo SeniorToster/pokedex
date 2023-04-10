@@ -9,24 +9,7 @@ import {
 import PokemonItem from './PokemonItem/PokemonItem';
 import styles from './PokemonList.module.scss';
 import { useInView } from 'react-intersection-observer';
-
-const renderPokemonList = (loadingPokemon, focusPokemon, ref, pokemons) => {
-  switch (loadingPokemon) {
-    case 'idle':
-      return <h2>Загрузка</h2>;
-    case 'loading':
-      return <h2>Загрузка</h2>;
-    case 'error':
-      return <h2>Ошибка</h2>;
-    case 'succeeded':
-      return pokemons.map(pokemon => (
-        <Fragment key={pokemon.id}>
-          <PokemonItem focusPokemon={focusPokemon} pokemon={pokemon} />
-          <div ref={ref}></div>
-        </Fragment>
-      ));
-  }
-};
+import SkeletonItem from './Skeleton/SkeletonItem';
 
 function PokemonList() {
   const { ref, inView } = useInView();
@@ -35,15 +18,26 @@ function PokemonList() {
   const focusPokemon = useSelector(focusPokemonState);
   const dispatch = useDispatch();
 
-  console.log(inView);
-
   useEffect(() => {
     dispatch(fetchPokemons());
-  }, []);
+  }, [inView]);
 
   return (
     <div className={styles.container}>
-      {renderPokemonList(loadingPokemon, focusPokemon, ref, pokemons)}
+      {pokemons.length > 0 &&
+        pokemons.map(pokemon => (
+          <Fragment key={pokemon.id}>
+            <PokemonItem focusPokemon={focusPokemon} pokemon={pokemon} />
+            <div ref={ref}></div>
+          </Fragment>
+        ))}
+
+      {(loadingPokemon === 'idle' || loadingPokemon === 'loading') &&
+        Array(20)
+          .fill()
+          .map((_, i) => <SkeletonItem key={i} />)}
+
+      {loadingPokemon === 'error' && <h2>Ошибка</h2>}
     </div>
   );
 }
