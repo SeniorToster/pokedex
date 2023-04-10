@@ -10,16 +10,20 @@ import PokemonItem from './PokemonItem/PokemonItem';
 import styles from './PokemonList.module.scss';
 import { useInView } from 'react-intersection-observer';
 import SkeletonItem from './Skeleton/SkeletonItem';
+import { limit } from '../../../api';
 
 function PokemonList() {
-  const { ref, inView } = useInView();
+  const { ref, inView } = useInView({
+    initialInView: true,
+    delay: 200,
+  });
   const pokemons = useSelector(pokemonsState);
   const loadingPokemon = useSelector(loadingPokemonsState);
   const focusPokemon = useSelector(focusPokemonState);
   const dispatch = useDispatch();
-
+  console.log(inView);
   useEffect(() => {
-    dispatch(fetchPokemons());
+    if (inView) dispatch(fetchPokemons());
   }, [inView]);
 
   return (
@@ -33,7 +37,7 @@ function PokemonList() {
         ))}
 
       {(loadingPokemon === 'idle' || loadingPokemon === 'loading') &&
-        Array(20)
+        Array(limit)
           .fill()
           .map((_, i) => <SkeletonItem key={i} />)}
 

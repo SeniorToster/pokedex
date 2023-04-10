@@ -4,15 +4,23 @@ import {
   getPokemonEvolution,
   getPokemonSpecies,
   getPokemons,
+  limit,
+  url,
 } from '../api';
-import { validationUrl } from '../helpers/validation';
+import { validationUrl, validationOffset } from '../helpers/validation';
+import ky from 'ky';
 
 export const fetchPokemons = createAsyncThunk(
   'pokemons/fetchPokemons',
-  async offset => {
-    const isOffset = offset ? `&offset=${offset}` : '';
+  async (_, thunkAPI) => {
     try {
-      const { results } = await getPokemons.get(isOffset).json();
+      const { offset } = thunkAPI.getState().pokemons;
+      const { results, next } = await ky
+        .get(`${url}/pokemon?limit=${limit}&offset=${offset}`)
+        .json();
+      console.log(validationOffset(next));
+      thunkAPI.dispatch(changeOffset(validationOffset(next)));
+
       const pokemons = [];
       for (const pokemon of results) {
         const data = await getPokemon(validationUrl(pokemon.url)).json();
@@ -131,6 +139,7 @@ const initialState = {
   pokemons: [],
   pokemonDetails: {},
   focusPokemon: '',
+  offset: '0',
   loadingPokemonDetails: 'idle',
   loadingPokemons: 'idle',
 };
@@ -139,8 +148,8 @@ const pokemonsSlice = createSlice({
   name: 'pokemons',
   initialState,
   reducers: {
-    test: state => {
-      state.pokemons.push('1');
+    changeOffset: (state, { payload }) => {
+      state.offset = payload;
     },
   },
   extraReducers: builder => {
@@ -153,7 +162,7 @@ const pokemonsSlice = createSlice({
       })
       .addCase(fetchPokemons.fulfilled, (state, { payload }) => {
         state.loadingPokemons = 'succeeded';
-        state.pokemons = payload;
+        state.pokemons = state.pokemons.concat(payload);
       })
       .addCase(fetchPokemonDetails.pending, state => {
         state.loadingPokemonDetails = 'loading';
@@ -189,4 +198,4 @@ export const pokemonPaginationState = state => {
   return {};
 };
 
-export const { test } = actions;
+export const { changeOffset } = actions;

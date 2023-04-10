@@ -68,6 +68,10 @@ export const colorTypes = [
     color: '#74cec0',
   },
   {
+    name: 'steel',
+    color: '#5a8ea1',
+  },
+  {
     name: 'unknown',
     color: '#a1a6ac',
   },
