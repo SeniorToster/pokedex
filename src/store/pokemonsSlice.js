@@ -3,7 +3,6 @@ import {
   getPokemon,
   getPokemonEvolution,
   getPokemonSpecies,
-  getPokemons,
   limit,
   url,
 } from '../api';
