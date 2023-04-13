@@ -6,17 +6,25 @@
   align-items: center;
   gap: 16px;
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 14px;
   & > p {
     font-weight: 600;
-    font-size: 12px;
+    font-size: 10px;
     background-color: $color-background;
     color: $color-grey;
     padding: 10px;
     border-radius: 30px;
   }
-  & > div > img {
-    width: 70px;
-    height: 70px;
+  & > div {
+    cursor: pointer;
+    padding: 8px;
+    &:hover {
+      background-color: $color-background;
+      border-radius: 20px;
+    }
+    & > img {
+      width: 50px;
+      height: 50px;
+    }
   }
 }

@@ -168,6 +168,7 @@ const pokemonsSlice = createSlice({
       })
       .addCase(fetchPokemonDetails.rejected, state => {
         state.loadingPokemonDetails = 'error';
+        state.focusPokemon = '';
       })
       .addCase(fetchPokemonDetails.fulfilled, (state, { payload }) => {
         state.loadingPokemonDetails = 'succeeded';

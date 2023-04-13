@@ -14,6 +14,8 @@ import EvolutionPokemon from './EvolutionPokemon/EvolutionPokemon';
 
 import styles from './PokemonDetails.module.scss';
 import Title from '../../Ui/Title/Title';
+import ErrorsPokemon from './ErrorsPokemon/ErrorsPokemon';
+import SizePokemon from './SizePokemon/SizePokemon';
 
 function PokemonDetails() {
   const loadingPokemon = useSelector(loadingPokemonDetailsState);
@@ -27,6 +29,8 @@ function PokemonDetails() {
         return <LoadingPokemon />;
       case 'succeeded':
         return <PokemonDetailsSucceeded pokemon={pokemon} />;
+      case 'error':
+        return <ErrorsPokemon />;
     }
   };
 
@@ -45,11 +49,12 @@ function PokemonDetailsSucceeded({ pokemon }) {
     <div className={styles.pokemon}>
       <img src={img.png} alt='pokemon' />
       <span className={styles.pokemon_id}>#{id}</span>
-      <Name size={'30px'}>{name}</Name>
+      <Name size={'20px'}>{name}</Name>
       <TypesPokemon types={types} />
       <Title>POKÉDEX ENTRY</Title>
       <p className={styles.pokemon_text}>{text}</p>
       <AbilitiesPokemon abilities={abilities} />
+      <SizePokemon sizes={sizes} />
       <StatsPokemon stats={stats} />
       <EvolutionPokemon evolution={evolution} />
       <PaginationPokemons id={id} />

@@ -1,4 +1,4 @@
-import { useEffect, Fragment } from 'react';
+import { useEffect, Fragment, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchPokemons,
@@ -14,17 +14,22 @@ import { limit } from '../../../api';
 
 function PokemonList() {
   const { ref, inView } = useInView({
-    initialInView: true,
+    initialInView: false,
     delay: 200,
   });
   const pokemons = useSelector(pokemonsState);
   const loadingPokemon = useSelector(loadingPokemonsState);
   const focusPokemon = useSelector(focusPokemonState);
+  const isMounted = useRef(false);
   const dispatch = useDispatch();
-  console.log(inView);
+
   useEffect(() => {
     if (inView) dispatch(fetchPokemons());
   }, [inView]);
+
+  useEffect(() => {
+    dispatch(fetchPokemons());
+  }, []);
 
   return (
     <div className={styles.container}>

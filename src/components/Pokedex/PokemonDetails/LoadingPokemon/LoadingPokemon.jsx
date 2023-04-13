@@ -1,9 +1,11 @@
-import React from 'react'
-
+import pokeball from '../../../../assets/pokeball-icon.svg';
+import styles from './LoadingPokemon.module.scss';
 function LoadingPokemon() {
   return (
-    <div>LoadingPokemon</div>
-  )
+    <div className={styles.pokeballLoading}>
+      <img src={pokeball} alt='pokeball' />
+    </div>
+  );
 }
 
-export default LoadingPokemon
+export default LoadingPokemon;
