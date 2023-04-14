@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import TypesPokemon from '../../../Ui/typesPokemon/TypesPokemon';
+import TypesPokemon from '../../../Ui/TypesPokemon/TypesPokemon';
 import styles from './PokemonItem.module.scss';
 import { fetchPokemonDetails } from '../../../../store/pokemonsSlice';
 import Name from '../../../Ui/Name/Name';

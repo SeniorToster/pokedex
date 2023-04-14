@@ -1,4 +1,4 @@
-import { useEffect, Fragment, useRef } from 'react';
+import { useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchPokemons,
@@ -20,7 +20,6 @@ function PokemonList() {
   const pokemons = useSelector(pokemonsState);
   const loadingPokemon = useSelector(loadingPokemonsState);
   const focusPokemon = useSelector(focusPokemonState);
-  const isMounted = useRef(false);
   const dispatch = useDispatch();
 
   useEffect(() => {

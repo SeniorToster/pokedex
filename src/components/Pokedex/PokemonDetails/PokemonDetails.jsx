@@ -3,19 +3,22 @@ import {
   loadingPokemonDetailsState,
   pokemonDetailsState,
 } from '../../../store/pokemonsSlice';
+
 import IdlePokemon from './IdlePokemon/IdlePokemon';
 import LoadingPokemon from './LoadingPokemon/LoadingPokemon';
-import TypesPokemon from '../../Ui/typesPokemon/TypesPokemon';
-import Name from '../../Ui/Name/Name';
+import ErrorsPokemon from './ErrorsPokemon/ErrorsPokemon';
+
+import TypesPokemon from '../../Ui/TypesPokemon/TypesPokemon';
 import AbilitiesPokemon from './AbilitiesPokemon/AbilitiesPokemon';
 import StatsPokemon from './StatsPokemon/StatsPokemon';
 import PaginationPokemons from './PaginationPokemons/PaginationPokemons';
 import EvolutionPokemon from './EvolutionPokemon/EvolutionPokemon';
 
-import styles from './PokemonDetails.module.scss';
+import Name from '../../Ui/Name/Name';
 import Title from '../../Ui/Title/Title';
-import ErrorsPokemon from './ErrorsPokemon/ErrorsPokemon';
 import SizePokemon from './SizePokemon/SizePokemon';
+
+import styles from './PokemonDetails.module.scss';
 
 function PokemonDetails() {
   const loadingPokemon = useSelector(loadingPokemonDetailsState);
