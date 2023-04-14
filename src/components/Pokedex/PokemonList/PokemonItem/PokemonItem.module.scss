@@ -13,23 +13,27 @@
   position: relative;
   padding-top: 40px;
   box-shadow: 0px 10px 10px 0px rgba($color: $color-grey, $alpha: 0.5);
+
   & img {
     position: absolute;
     width: 80px;
     height: 80px;
     top: -50px;
   }
+
   &_id {
     color: $color-grey;
     font-weight: 600;
     font-size: 14px;
     margin-bottom: 12px;
   }
+
   &_typeList {
     display: flex;
     gap: 8px;
     margin-bottom: 26px;
   }
+  
   &_typeItem {
     padding: 10px 12px;
     border-radius: 8px;

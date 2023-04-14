@@ -32,13 +32,18 @@ function PokemonList() {
 
   return (
     <div className={styles.container}>
-      {pokemons.length > 0 &&
-        pokemons.map(pokemon => (
-          <Fragment key={pokemon.id}>
-            <PokemonItem focusPokemon={focusPokemon} pokemon={pokemon} />
-            <div ref={ref}></div>
-          </Fragment>
-        ))}
+      {pokemons.length > 0 && (
+        <>
+          {pokemons.map(pokemon => (
+            <PokemonItem
+              key={pokemon.id}
+              focusPokemon={focusPokemon}
+              pokemon={pokemon}
+            />
+          ))}
+          <span ref={ref}>_</span>
+        </>
+      )}
 
       {(loadingPokemon === 'idle' || loadingPokemon === 'loading') &&
         Array(limit)
