@@ -4,3 +4,9 @@
   gap: 20px;
   position: relative;
 }
+
+@media (max-width: 1400px) {
+  .container {
+    display: block;
+  }
+}

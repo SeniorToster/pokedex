@@ -1,4 +1,4 @@
-import { useEffect, Fragment } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchPokemons,
@@ -13,10 +13,7 @@ import SkeletonItem from './Skeleton/SkeletonItem';
 import { limit } from '../../../api';
 
 function PokemonList() {
-  const { ref, inView } = useInView({
-    initialInView: false,
-    delay: 200,
-  });
+  const { ref, inView } = useInView({ delay: 200 });
   const pokemons = useSelector(pokemonsState);
   const loadingPokemon = useSelector(loadingPokemonsState);
   const focusPokemon = useSelector(focusPokemonState);
