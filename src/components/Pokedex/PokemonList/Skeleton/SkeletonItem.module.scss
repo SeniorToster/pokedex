@@ -37,3 +37,9 @@
     background-position-x: -200%;
   }
 }
+
+@media (max-width: 680px) {
+  .wrapper {
+    min-width: 160px;
+  }
+}
