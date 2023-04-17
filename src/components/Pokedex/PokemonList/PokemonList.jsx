@@ -29,7 +29,7 @@ function PokemonList() {
 
   return (
     <div className={styles.container}>
-      {/*       {pokemons.length > 0 && (
+      {pokemons.length > 0 && (
         <>
           {pokemons.map(pokemon => (
             <PokemonItem
@@ -40,16 +40,12 @@ function PokemonList() {
           ))}
           <span ref={ref}>_</span>
         </>
-      )} */}
+      )}
 
-      {
-        /* (loadingPokemon === 'idle' || loadingPokemon === 'loading') && */
+      {(loadingPokemon === 'idle' || loadingPokemon === 'loading') &&
         Array(limit)
           .fill()
-          .map((_, i) => (
-            <SkeletonItem key={i} />
-          ))
-      }
+          .map((_, i) => <SkeletonItem key={i} />)}
 
       {loadingPokemon === 'error' && <h2>Ошибка</h2>}
     </div>
