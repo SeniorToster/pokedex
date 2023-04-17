@@ -1,7 +1,8 @@
 import ky from 'ky';
 
 export const url = 'https://pokeapi.co/api/v2';
-export const limit = 30;
+
+export const limit = 40;
 
 export const getPokemons = ky.create({
   prefixUrl: `${url}/pokemon?limit=${limit}`,

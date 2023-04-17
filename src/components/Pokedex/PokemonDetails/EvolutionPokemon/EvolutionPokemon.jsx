@@ -11,7 +11,7 @@ function EvolutionPokemon({ evolution }) {
     <>
       <Title>evolution</Title>
       <div className={styles.evolution}>
-        {evolution.length > 1 ? (
+        {evolution.length > 1 &&
           evolution.map(({ id, name, img, level = undefined }, index) => (
             <Fragment key={id}>
               {index > 0 && <p>{level ? `Lvl ${level}` : '?'}</p>}
@@ -19,10 +19,7 @@ function EvolutionPokemon({ evolution }) {
                 <img src={img} alt={name} />
               </div>
             </Fragment>
-          ))
-        ) : (
-          <p>нету</p>
-        )}
+          ))}
       </div>
     </>
   );
