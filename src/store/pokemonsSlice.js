@@ -17,7 +17,7 @@ export const fetchPokemons = createAsyncThunk(
       const { results, next } = await ky
         .get(`${url}/pokemon?limit=${limit}&offset=${offset}`)
         .json();
-      console.log(validationOffset(next));
+
       thunkAPI.dispatch(changeOffset(validationOffset(next)));
 
       const pokemons = [];
@@ -41,7 +41,9 @@ export const fetchPokemons = createAsyncThunk(
 
 export const fetchPokemonDetails = createAsyncThunk(
   'pokemons/fetchPokemonDetails',
-  async idPokemon => {
+  async (idPokemon, thunkAPI) => {
+    thunkAPI.dispatch(changeFocusPokemon(idPokemon));
+
     const dataPokemon = await getPokemon(`${idPokemon}`).json();
     const { id, name, sprites, types, weight, height, abilities, stats } =
       dataPokemon;
@@ -150,6 +152,9 @@ const pokemonsSlice = createSlice({
     changeOffset: (state, { payload }) => {
       state.offset = payload;
     },
+    changeFocusPokemon: (state, { payload = '' }) => {
+      state.focusPokemon = payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -168,12 +173,10 @@ const pokemonsSlice = createSlice({
       })
       .addCase(fetchPokemonDetails.rejected, state => {
         state.loadingPokemonDetails = 'error';
-        state.focusPokemon = '';
       })
       .addCase(fetchPokemonDetails.fulfilled, (state, { payload }) => {
         state.loadingPokemonDetails = 'succeeded';
         state.pokemonDetails = payload;
-        state.focusPokemon = payload.id;
       });
   },
 });
@@ -198,4 +201,4 @@ export const pokemonPaginationState = state => {
   return {};
 };
 
-export const { changeOffset } = actions;
+export const { changeOffset, changeFocusPokemon } = actions;

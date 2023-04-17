@@ -1,5 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { TfiClose } from 'react-icons/tfi';
+
 import {
+  changeFocusPokemon,
+  focusPokemonState,
   loadingPokemonDetailsState,
   pokemonDetailsState,
 } from '../../../store/pokemonsSlice';
@@ -19,10 +23,14 @@ import Title from '../../Ui/Title/Title';
 import SizePokemon from './SizePokemon/SizePokemon';
 
 import styles from './PokemonDetails.module.scss';
+import useMedia from '../../../hooks/useMedia';
 
 function PokemonDetails() {
   const loadingPokemon = useSelector(loadingPokemonDetailsState);
+  const focusPokemon = useSelector(focusPokemonState);
   const pokemon = useSelector(pokemonDetailsState);
+  const dispatch = useDispatch();
+  const isMobile = useMedia('(max-width: 1400px)');
 
   const renderElements = (loadingPokemon, pokemon) => {
     switch (loadingPokemon) {
@@ -38,9 +46,21 @@ function PokemonDetails() {
   };
 
   return (
-    <div className={styles.wrapper}>
-      {renderElements(loadingPokemon, pokemon)}
-    </div>
+    <>
+      {focusPokemon && (
+        <div className={styles.close}>
+          <TfiClose onClick={() => dispatch(changeFocusPokemon())} />
+        </div>
+      )}
+      <div
+        style={{
+          visibility: isMobile && (focusPokemon ? 'visible' : 'hidden'),
+        }}
+        className={styles.wrapper}
+      >
+        {renderElements(loadingPokemon, pokemon)}
+      </div>
+    </>
   );
 }
 

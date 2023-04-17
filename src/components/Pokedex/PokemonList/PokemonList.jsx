@@ -1,16 +1,16 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useInView } from 'react-intersection-observer';
 import {
   fetchPokemons,
   focusPokemonState,
   loadingPokemonsState,
   pokemonsState,
 } from '../../../store/pokemonsSlice';
+import { limit } from '../../../api';
 import PokemonItem from './PokemonItem/PokemonItem';
 import styles from './PokemonList.module.scss';
-import { useInView } from 'react-intersection-observer';
 import SkeletonItem from './Skeleton/SkeletonItem';
-import { limit } from '../../../api';
 
 function PokemonList() {
   const { ref, inView } = useInView({ delay: 200 });

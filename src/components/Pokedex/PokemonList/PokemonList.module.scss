@@ -9,3 +9,9 @@
     visibility: hidden;
   }
 }
+
+@media (max-width: 680px) {
+  .container {
+    gap: 10px;
+  }
+}
