@@ -1,6 +1,6 @@
 # pokedex
 Front-end приложение для поиска и детальной информации о покемонах. Демо: [Pokedex](https://pokedexpokemons.netlify.app/)
-![1](https://prnt.sc/52il57DrAcJ3)
+![1](https://cdn.discordapp.com/attachments/1071988302971944982/1098692390438580364/ZxZ5JgAQEAVV1ltkhARIgARIgARIgAbcQD9OGYG6xI8BgAAAABJRU5ErkJggg.png)
 
 
 ### Стек технологий:
