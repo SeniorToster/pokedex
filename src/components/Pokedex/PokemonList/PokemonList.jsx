@@ -16,7 +16,7 @@ import SkeletonItem from './Skeleton/SkeletonItem';
 import styles from './PokemonList.module.scss';
 
 function PokemonList() {
-  const { ref, inView } = useInView({ delay: 100 });
+  const { ref, inView } = useInView({ delay: 100, initialInView: true });
   const pokemons = useSelector(pokemonsState);
   const loadingPokemon = useSelector(loadingPokemonsState);
   const focusPokemon = useSelector(focusPokemonState);
